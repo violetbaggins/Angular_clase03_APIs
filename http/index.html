@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- CSS bootstrap tienen que ir antes de los SCRIPTS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/estilos.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+    <script src="js/controlador.js"></script>
+    <title>HTTP AJS</title>
+</head>
+
+<body ng-app="miApp">
+    <div ng-controller="miCtrl" class="container-fluid">
+        <div class="jumbotron mt-3">
+            <h1>{{mensaje}}</h1>
+            <hr>
+            <h4>Log In PHP</h4>
+            <br>
+            <form autocomplete="off">
+                <div class="form-group">
+                    <label for="usuario">Usuario:</label>
+                    <input type="text" id="usuario" name="usuario" class="form-control w-50" ng-model="usuario">
+                </div>
+                <div class="form-group">
+                    <label for="clave">Clave:</label>
+                    <input type="text" id="clave" class="form-control w-50" name="clave" ng-model="clave">
+                </div>
+
+                <button ng-click="login()" class="btn btn-success my-3">Log In</button>
+            </form>
+
+            <hr>
+            <!-- Para agregar comentarios -->
+            <h4>Agregar Comentario</h4>
+            <br>
+            <form autocomplete="off">
+                <div class="form-group">
+                    <label>Email:</label>
+                    <input type="email" id="email" name="email" class="form-control w-50" ng-model="email">
+                </div>
+                <div class="form-group">
+                    <label>Comentario:</label>
+                    <input type="text" id="body" class="form-control w-50" name="body" ng-model="body">
+                </div>
+
+                <button ng-click="agregar()" class="btn btn-success my-3">Agregar</button>
+            </form>
+
+            <table class="table table-ligth border">
+                <tr>
+                    <th>ID</th>
+                    <th>Email</th>
+                    <th>Body</th>
+                </tr>
+                <tr ng-repeat="comentario in comentarios | limitTo:5 track by $index">
+                    <td>{{comentario.id}}</td>
+                    <td>{{comentario.email}}</td>
+                    <td>{{comentario.body}}</td>
+                </tr>
+
+            </table>
+            <div ng-show="error != ''" class="alert alert-danger">
+                <h3>{{error}}</h3>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</body>
+
+</html>
